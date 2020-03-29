@@ -14,7 +14,7 @@ public class FoodTruckApplication {
 		FoodTruckApplication ftApp = new FoodTruckApplication();
 
 		ftApp.newTruckBuilder();
-		ftApp.menu();
+		//ftApp.menu();
 	}
 
 	public void newTruckBuilder() {
@@ -38,55 +38,72 @@ public class FoodTruckApplication {
 				AllTrucks[howManyTrucks] = createdTruck;
 
 			} else {
+
 				break;
 			}
 
 		}
+
 	}
 
 	public void menu() {
+		System.out.println();
 		System.out.println("Choose a number from the list below.");
 		System.out.println("1. List all existing food trucks.");
 		System.out.println("2. See the average rating of food trucks.");
 		System.out.println("3. Display the highest-rated food truck.");
 		System.out.println("4. Quit the program.");
+		System.out.println();
 		int menuChoice = w.nextInt();
 		while ((menuChoice <= 4) || (menuChoice >= 1)) {
 			if (menuChoice == 1) {
-			 	listAllTrucks();
+				for (int i = 0; i < AllTrucks.length; i++) {
+					if (AllTrucks[i] != null) {
+						System.out.println(AllTrucks[i].toString());
+					}
+				}
 			}
 
 			if (menuChoice == 2) {
-				 average();
-				
+				int totalRating = 0;
+				int HowManyDamnTrucks = 0;
+				double averageRating = 0;
+				for (int i = 0; i < AllTrucks.length; i++) {
+					if (AllTrucks[i] != null) {
+						totalRating += AllTrucks[i].getRating();
+						HowManyDamnTrucks++;
+					}
+				}
+				averageRating = (double) totalRating / HowManyDamnTrucks;
+				System.out.print("Average Rating for all trucks :" + averageRating);
 			}
 
 			if (menuChoice == 3) {
-				 highestRated();
-				
+				FoodTruck compare = AllTrucks[0];
+				int highestRating = AllTrucks[0].getRating();
+				for (int i = 0; i < AllTrucks.length; i++) {
+					if (AllTrucks[i] != null) {
+						if (highestRating < AllTrucks[i].getRating()) {
+							highestRating = AllTrucks[i].getRating();
+							compare = AllTrucks[i];
+						}
+					}
+				}
+				System.out.println(compare.toString());
 			}
 
 			if (menuChoice == 4) {
-				 System.out.println("Goodbye");
-				 System.exit(0);
+				System.out.println("Goodbye");
+				System.exit(0);
 			}
 			System.out.println("Choose a number from the list below.");
 			System.out.println("1. List all existing food trucks.");
 			System.out.println("2. See the average rating of food trucks.");
 			System.out.println("3. Display the highest-rated food truck.");
 			System.out.println("4. Quit the program.");
-			 menuChoice = w.nextInt();
+			menuChoice = w.nextInt();
 		}
-		
-	}
-	public void listAllTrucks(){
-		
-	}
-	
-	public void average() {
-		// System.out.println("LOOK FOR ME");
+
 	}
 
-	public void highestRated() {
-	}
 }

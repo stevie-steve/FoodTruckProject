@@ -18,8 +18,8 @@ public class FoodTruck {
 	}
 
 	public FoodTruck() {
-		nextTruckID ++;
 		truckUniqueID = nextTruckID;
+		nextTruckID ++;
 	}
 
 
@@ -59,4 +59,9 @@ public class FoodTruck {
 		return "FoodTruck [truckUniqueID=" + truckUniqueID + ", truckName=" + truckName + ", foodType=" + foodType
 				+ ", rating=" + rating + "]";
 	}
+	//public void listAllTrucksByName() {
+	//	String truckInfo = toString();
+	//	System.out.println(truckInfo);
+		
+	//}
 }
