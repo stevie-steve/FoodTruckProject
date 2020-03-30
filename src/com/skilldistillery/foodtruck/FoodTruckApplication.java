@@ -9,30 +9,32 @@ public class FoodTruckApplication {
 	Scanner w = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		System.out.println("Lets talk about food trucks");
+		System.out.println("Lets talk about food trucks!");
 
 		FoodTruckApplication ftApp = new FoodTruckApplication();
 
 		ftApp.newTruckBuilder();
-		//ftApp.menu();
+		ftApp.menu();
 	}
 
 	public void newTruckBuilder() {
 		for (int howManyTrucks = 0; howManyTrucks < Max_Trucks; howManyTrucks++) {
 
 			System.out.print("Enter the name of food truck " + (howManyTrucks + 1) + ":");
-			String truckName = w.next();
+			String truckName = w.nextLine();
 
 			if (!truckName.equalsIgnoreCase("quit")) {
 				System.out.print("Enter the type of food: ");
-				String foodType = w.next();
+				String foodType = w.nextLine();
 
 				System.out.print("Enter your rating of the foodtruck from 1 (Lowest) and 5 (Highest): ");
 				int rating = w.nextInt();
+				w.nextLine();
 				while (rating > 5 || rating < 1) {
 					System.out.println("Error: Outside of scale");
 					System.out.print("Enter your rating of the foodtruck from 1 (Lowest) and 5 (Highest): ");
 					rating = w.nextInt();
+					w.nextLine();
 				}
 				FoodTruck createdTruck = new FoodTruck(truckName, foodType, rating);
 				AllTrucks[howManyTrucks] = createdTruck;
@@ -43,7 +45,7 @@ public class FoodTruckApplication {
 			}
 
 		}
-
+ 
 	}
 
 	public void menu() {
@@ -60,6 +62,7 @@ public class FoodTruckApplication {
 				for (int i = 0; i < AllTrucks.length; i++) {
 					if (AllTrucks[i] != null) {
 						System.out.println(AllTrucks[i].toString());
+						System.out.println();
 					}
 				}
 			}
@@ -70,12 +73,13 @@ public class FoodTruckApplication {
 				double averageRating = 0;
 				for (int i = 0; i < AllTrucks.length; i++) {
 					if (AllTrucks[i] != null) {
-						totalRating += AllTrucks[i].getRating();
+						totalRating += AllTrucks[i].getRating(); 
 						HowManyDamnTrucks++;
 					}
 				}
 				averageRating = (double) totalRating / HowManyDamnTrucks;
-				System.out.print("Average Rating for all trucks :" + averageRating);
+				System.out.print("Average Rating for all trucks:" + averageRating);
+				System.out.println();
 			}
 
 			if (menuChoice == 3) {
@@ -84,12 +88,13 @@ public class FoodTruckApplication {
 				for (int i = 0; i < AllTrucks.length; i++) {
 					if (AllTrucks[i] != null) {
 						if (highestRating < AllTrucks[i].getRating()) {
-							highestRating = AllTrucks[i].getRating();
+							highestRating = AllTrucks[i].getRating(); 
 							compare = AllTrucks[i];
 						}
 					}
 				}
-				System.out.println(compare.toString());
+				System.out.println("The Highest Rated FoodTruck is :" + compare.toString());
+				System.out.println();
 			}
 
 			if (menuChoice == 4) {
